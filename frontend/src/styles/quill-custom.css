@@ -1,0 +1,112 @@
+/* Estilos customizados para o editor Quill */
+.ql-toolbar {
+  border-top: 1px solid hsl(var(--border));
+  border-left: 1px solid hsl(var(--border));
+  border-right: 1px solid hsl(var(--border));
+  background: hsl(var(--background));
+}
+
+.ql-container {
+  border-bottom: 1px solid hsl(var(--border));
+  border-left: 1px solid hsl(var(--border));
+  border-right: 1px solid hsl(var(--border));
+  background: hsl(var(--background));
+}
+
+.ql-editor {
+  color: hsl(var(--foreground));
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+.ql-editor.ql-blank::before {
+  color: hsl(var(--muted-foreground));
+  font-style: italic;
+}
+
+.ql-toolbar .ql-stroke {
+  stroke: hsl(var(--foreground));
+}
+
+.ql-toolbar .ql-fill {
+  fill: hsl(var(--foreground));
+}
+
+.ql-toolbar .ql-picker-label {
+  color: hsl(var(--foreground));
+}
+
+.ql-toolbar button:hover,
+.ql-toolbar button:focus {
+  background-color: hsl(var(--accent));
+}
+
+.ql-toolbar button.ql-active {
+  background-color: hsl(var(--primary));
+}
+
+.ql-toolbar button.ql-active .ql-stroke {
+  stroke: hsl(var(--primary-foreground));
+}
+
+.ql-toolbar button.ql-active .ql-fill {
+  fill: hsl(var(--primary-foreground));
+}
+
+/* Estilos para o conteúdo renderizado */
+.story-content .ql-editor {
+  padding: 0;
+  border: none;
+}
+
+.story-content .ql-editor h1,
+.story-content .ql-editor h2,
+.story-content .ql-editor h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.story-content .ql-editor h1 {
+  font-size: 2rem;
+}
+
+.story-content .ql-editor h2 {
+  font-size: 1.5rem;
+}
+
+.story-content .ql-editor h3 {
+  font-size: 1.25rem;
+}
+
+.story-content .ql-editor p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.story-content .ql-editor ul,
+.story-content .ql-editor ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.story-content .ql-editor li {
+  margin-bottom: 0.5rem;
+}
+
+.story-content .ql-editor strong {
+  font-weight: 600;
+}
+
+.story-content .ql-editor em {
+  font-style: italic;
+}
+
+.story-content .ql-editor a {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+}
+
+.story-content .ql-editor a:hover {
+  color: hsl(var(--primary) / 0.8);
+}
