@@ -47,14 +47,14 @@ cd sideludi
 
 ```bash
 # Inicie todos os serviços
-docker-compose up -d
+docker compose up -d
 
 # Aguarde alguns segundos para os serviços iniciarem
 # Execute as migrações do banco
-docker-compose exec backend npx prisma migrate deploy
+docker compose exec backend npx prisma migrate deploy
 
 # (Opcional) Execute o seed para dados iniciais
-docker-compose exec backend npx prisma db seed
+docker compose exec backend npx prisma db seed
 ```
 
 ### 3. Configuração Manual (Desenvolvimento)

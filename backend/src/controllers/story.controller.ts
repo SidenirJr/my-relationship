@@ -36,7 +36,7 @@ export const updateStory = async (req: Request, res: Response) => {
         const { title, content } = req.body;
 
         const story = await prisma.story.update({
-            where: { id },
+            where: { id: parseInt(id) },
             data: {
                 title,
                 content

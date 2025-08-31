@@ -162,7 +162,8 @@ const Photos = ({ isAdmin = false }: PhotosProps) => {
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {photos.map((photo) => {
-                        const imageUrl = photo.url;
+                        // Convert backend URL to use nginx proxy
+                        const imageUrl = photo.url.replace('http://localhost:3001', '');
                         console.log('Rendering image:', imageUrl, 'Photo data:', photo);
                         return (
                             <div key={photo.id} className="relative group overflow-hidden rounded-lg">

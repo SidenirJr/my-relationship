@@ -46,9 +46,14 @@ app.use(helmet({
 
 // Middleware para CORS
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production' 
-        ? 'https://sideludi.com' 
-        : 'http://localhost:8080',
+    origin: (origin, callback) => {
+        if (process.env.NODE_ENV === 'production') {
+            callback(null, origin === 'https://sideludi.com');
+        } else {
+            const allowedOrigins = ['http://localhost:8080', 'http://localhost:80', 'http://localhost'];
+            callback(null, !origin || allowedOrigins.includes(origin));
+        }
+    },
     credentials: true
 }));
 

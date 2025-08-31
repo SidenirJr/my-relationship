@@ -34,3 +34,6 @@ prisma/migrations/
 .vscode/
 *.swp
 *.swo
+
+#Uploads
+uploads/*

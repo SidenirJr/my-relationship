@@ -37,7 +37,7 @@ export const login = async (req: Request, res: Response) => {
         );
 
         // Salva o ID do usuário na sessão
-        req.session.userId = user.id;
+        req.session.userId = user.id.toString();
 
         return res.status(200).json({
             user: {
@@ -79,7 +79,7 @@ export const checkAuth = async (req: Request, res: Response) => {
 
         // Busca as informações do usuário
         const user = await prisma.user.findUnique({
-            where: { id: userId },
+            where: { id: parseInt(userId) },
             select: { id: true, username: true }
         });
 

@@ -11,7 +11,8 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        Int      @id @default(autoincrement())
+  uuid      String   @unique @default(uuid())
   username  String   @unique
   password  String
   createdAt DateTime @default(now()) @map("created_at")
@@ -21,7 +22,8 @@ model User {
 }
 
 model PhotoSection {
-  id        String   @id @default(uuid())
+  id        Int      @id @default(autoincrement())
+  uuid      String   @unique @default(uuid())
   title     String
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -31,9 +33,10 @@ model PhotoSection {
 }
 
 model Photo {
-  id            String       @id @default(uuid())
+  id            Int          @id @default(autoincrement())
+  uuid          String       @unique @default(uuid())
   url           String
-  photoSectionId String       @map("photo_section_id")
+  photoSectionId Int          @map("photo_section_id")
   photoSection  PhotoSection @relation(fields: [photoSectionId], references: [id], onDelete: Cascade)
   createdAt     DateTime     @default(now()) @map("created_at")
   updatedAt     DateTime     @updatedAt @map("updated_at")
@@ -42,7 +45,8 @@ model Photo {
 }
 
 model Story {
-  id        String   @id @default(uuid())
+  id        Int      @id @default(autoincrement())
+  uuid      String   @unique @default(uuid())
   title     String
   content   String   @db.Text
   createdAt DateTime @default(now()) @map("created_at")

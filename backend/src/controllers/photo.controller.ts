@@ -32,7 +32,7 @@ export const getPhotoSectionById = async (req: Request, res: Response) => {
         const { id } = req.params;
 
         const photoSection = await prisma.photoSection.findUnique({
-            where: { id },
+            where: { id: parseInt(id) },
             include: {
                 photos: true
             }
@@ -78,7 +78,7 @@ export const updatePhotoSection = async (req: Request, res: Response) => {
         const { title } = req.body;
 
         const photoSection = await prisma.photoSection.update({
-            where: { id },
+            where: { id: parseInt(id) },
             data: {
                 title
             }
@@ -99,7 +99,7 @@ export const deletePhotoSection = async (req: Request, res: Response) => {
         const { id } = req.params;
 
         await prisma.photoSection.delete({
-            where: { id }
+            where: { id: parseInt(id) }
         });
 
         return res.status(204).send();
@@ -121,15 +121,18 @@ export const addPhotoToSection = async (req: Request, res: Response) => {
             return res.status(400).json({ message: 'Nenhum arquivo foi enviado' });
         }
 
-        // Gera a URL do arquivo baseada no caminho
+        // Gera a URL relativa do arquivo para funcionar com o proxy nginx
         const url = `/uploads/${req.file.filename}`;
+        console.log('Creating photo with URL:', url);
 
         const photo = await prisma.photo.create({
             data: {
                 url,
-                photoSectionId
+                photoSectionId: parseInt(photoSectionId)
             }
         });
+        
+        console.log('Photo created:', photo);
 
         return res.status(201).json(photo);
     } catch (error) {
@@ -146,7 +149,7 @@ export const deletePhoto = async (req: Request, res: Response) => {
         const { id } = req.params;
 
         await prisma.photo.delete({
-            where: { id }
+            where: { id: parseInt(id) }
         });
 
         return res.status(204).send();
