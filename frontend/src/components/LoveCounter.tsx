@@ -8,15 +8,12 @@ interface TimeUnit {
 }
 
 // Data de início do namoro
-const START_DATE = new Date("2025-05-10T15:42:00"); // Sidenir e Ludimila
+const START_DATE = new Date("2025-05-10T15:42:00");
 
 const LoveCounter: React.FC = () => {
-    console.log("LoveCounter component rendering...");
-    
     const [timeElapsed, setTimeElapsed] = useState<TimeUnit[]>([]);
 
     useEffect(() => {
-        console.log("useEffect running in LoveCounter");
         const calculateTime = () => {
             const now = new Date();
             const diff = now.getTime() - START_DATE.getTime();

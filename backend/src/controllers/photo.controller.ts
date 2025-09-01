@@ -123,7 +123,6 @@ export const addPhotoToSection = async (req: Request, res: Response) => {
 
         // Gera a URL relativa do arquivo para funcionar com o proxy nginx
         const url = `/uploads/${req.file.filename}`;
-        console.log('Creating photo with URL:', url);
 
         const photo = await prisma.photo.create({
             data: {
@@ -132,7 +131,6 @@ export const addPhotoToSection = async (req: Request, res: Response) => {
             }
         });
         
-        console.log('Photo created:', photo);
 
         return res.status(201).json(photo);
     } catch (error) {

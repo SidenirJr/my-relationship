@@ -20,8 +20,6 @@ const Photos = ({ isAdmin = false }: PhotosProps) => {
         try {
             setIsLoading(true);
             const sections = await photoService.getAllSections();
-            console.log('Sections loaded:', sections);
-            console.log('First section photos:', sections[0]?.photos);
             setPhotoSections(sections);
         } catch (error) {
             console.error('Erro ao carregar seções de fotos:', error);
@@ -164,7 +162,6 @@ const Photos = ({ isAdmin = false }: PhotosProps) => {
                     {photos.map((photo) => {
                         // Convert backend URL to use nginx proxy
                         const imageUrl = photo.url.replace('http://localhost:3001', '');
-                        console.log('Rendering image:', imageUrl, 'Photo data:', photo);
                         return (
                             <div key={photo.id} className="relative group overflow-hidden rounded-lg">
                                 <img
@@ -173,9 +170,6 @@ const Photos = ({ isAdmin = false }: PhotosProps) => {
                                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                                     onError={(e) => {
                                         console.error('Erro ao carregar imagem:', imageUrl, 'Photo:', photo);
-                                    }}
-                                    onLoad={() => {
-                                        console.log('Imagem carregada com sucesso:', imageUrl);
                                     }}
                                 />
                                 <div className="absolute inset-0 bg-gradient-romantic opacity-0 group-hover:opacity-20 transition-opacity duration-300" />

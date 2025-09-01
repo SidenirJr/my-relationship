@@ -1,5 +1,5 @@
-const { PrismaClient } = require('@prisma/client');
-const bcrypt = require('bcrypt');
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
@@ -40,7 +40,6 @@ async function main() {
         title: 'Galeria Principal',
       },
     });
-    console.log('Seção de fotos inicial criada:', photoSection);
   }
 
   console.log('Seed concluído com sucesso!');
