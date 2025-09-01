@@ -1,41 +1,55 @@
 # Nossa História - Aplicação Web Romântica
 
-Uma aplicação web completa para casais compartilharem suas memórias através de fotos e histórias. Desenvolvida com React/TypeScript no frontend e Node.js/Express no backend.
+Uma aplicação web completa para casais compartilharem suas memórias através de fotos e histórias.
 
-## 🚀 Tecnologias Utilizadas
+## 🌟 Funcionalidades
+
+- **Galeria de Fotos**: Compartilhe momentos especiais com uma galeria de fotos.
+- **Histórias**: Crie e compartilhe histórias românticas com seus amigos.
+- **Edição Restrita**: Acesse uma página de login para editar conteúdo da galeria e histórias.
+- **Design Responsivo**: Acesse a aplicação de qualquer dispositivo, seja desktop, tablet ou celular.
+
+## Lembre-se
+ - Alterar nomes na pagina Home.tsx
+ - Alterar data de namoro no componente LoveCounter.tsx 
+
+## 🚀 Bibliotecas e Versões
 
 ### Frontend
-- **React 18** com TypeScript
-- **Vite** como bundler
-- **Tailwind CSS** para estilização
-- **Shadcn/ui** para componentes
-- **React Router** para navegação
-- **React Query** para gerenciamento de estado
-- **React Quill** para editor de texto rico
-- **Lucide React** para ícones
+- **React** 18.3.1
+- **TypeScript** 5.8.3
+- **Vite** 5.4.19
+- **Tailwind CSS** 3.4.17
+- **React Router DOM** 6.30.1
+- **TanStack React Query** 5.83.0
+- **React Hook Form** 7.61.1
+- **React Quill** 2.0.0
+- **Axios** 1.11.0
+- **Zod** 3.25.76
+- **Lucide React** 0.462.0
+- **Radix UI** (diversos componentes)
+- **Shadcn/ui** (sistema de componentes)
 
 ### Backend
-- **Node.js** com TypeScript
-- **Express.js** como framework web
-- **Prisma** como ORM
-- **MySQL** como banco de dados
-- **Redis** para cache e sessões
-- **JWT** para autenticação
-- **Multer** para upload de arquivos
-- **bcrypt** para hash de senhas
+- **Node.js** com **TypeScript** 5.3.3
+- **Express.js** 4.18.3
+- **Prisma** 5.10.0
+- **bcrypt** 5.1.1
+- **jsonwebtoken** 9.0.2
+- **multer** 1.4.5-lts.1
+- **cors** 2.8.5
+- **helmet** 7.1.0
+- **morgan** 1.10.0
+- **ioredis** 5.3.2
+- **zod** 3.22.4
 
-### DevOps
+### Infraestrutura
 - **Docker** e **Docker Compose**
-- **Nginx** como proxy reverso
-- **ESLint** e **Prettier** para qualidade de código
+- **MySQL** (banco de dados)
+- **Redis** (cache e sessões)
+- **Nginx** (proxy reverso)
 
-## 📋 Pré-requisitos
-
-- Node.js 18+ 
-- Docker e Docker Compose
-- Git
-
-## 🛠️ Instalação e Configuração
+## 🛠️ Como Iniciar o Projeto
 
 ### 1. Clone o repositório
 ```bash
@@ -43,472 +57,83 @@ git clone <url-do-repositorio>
 cd sideludi
 ```
 
-### 2. Configuração com Docker (Recomendado)
-
+### 2. Inicie com Docker Compose
 ```bash
 # Inicie todos os serviços
 docker compose up -d
 
-# Aguarde alguns segundos para os serviços iniciarem
-# Execute as migrações do banco
+# Execute as migrações do Prisma
 docker compose exec backend npx prisma migrate deploy
 
 # (Opcional) Execute o seed para dados iniciais
 docker compose exec backend npx prisma db seed
 ```
 
-### 3. Configuração Manual (Desenvolvimento)
-
-#### Backend
-```bash
-cd backend
-
-# Instale as dependências
-npm install
-
-# Configure as variáveis de ambiente
-cp .env.example .env
-# Edite o arquivo .env com suas configurações
-
-# Execute as migrações
-npx prisma migrate deploy
-
-# (Opcional) Execute o seed
-npx prisma db seed
-
-# Inicie o servidor de desenvolvimento
-npm run dev
-```
-
-#### Frontend
-```bash
-cd frontend
-
-# Instale as dependências
-npm install
-
-# Configure as variáveis de ambiente
-cp .env.example .env
-# Edite o arquivo .env com suas configurações
-
-# Inicie o servidor de desenvolvimento
-npm run dev
-```
-
-## 🌐 URLs de Acesso
-
+### 3. Acesse a aplicação
 - **Frontend**: http://localhost:8080
 - **Backend API**: http://localhost:3001
 
-## 📁 Estrutura do Projeto
+## 🔄 Aplicando Mudanças Durante o Desenvolvimento
 
-```
-sideludi/
-├── backend/                 # API Backend
-│   ├── src/
-│   │   ├── controllers/     # Controladores da API
-│   │   ├── middlewares/     # Middlewares personalizados
-│   │   ├── routes/          # Definição das rotas
-│   │   └── index.ts         # Arquivo principal
-│   ├── prisma/
-│   │   ├── schema.prisma    # Schema do banco de dados
-│   │   └── seed.ts          # Dados iniciais
-│   ├── uploads/             # Arquivos enviados
-│   └── Dockerfile
-├── frontend/                # Interface do usuário
-│   ├── src/
-│   │   ├── components/      # Componentes reutilizáveis
-│   │   ├── pages/           # Páginas da aplicação
-│   │   ├── contexts/        # Contextos React
-│   │   ├── services/        # Serviços de API
-│   │   └── styles/          # Estilos personalizados
-│   └── Dockerfile
-└── docker-compose.yml       # Configuração dos serviços
-```
+Quando você modificar o código da aplicação, é necessário rebuildar os containers Docker para que as mudanças sejam refletidas:
 
-## 🔐 Sistema de Autenticação
-
-### Endpoints de Autenticação
-
-#### POST `/api/auth/login`
-Realiza login do usuário
-
-**Body:**
-```json
-{
-  "email": "usuario@email.com",
-  "password": "senha123"
-}
-```
-
-**Response (200):**
-```json
-{
-  "user": {
-    "id": 1,
-    "email": "usuario@email.com",
-    "name": "Nome do Usuário"
-  },
-  "token": "jwt_token_aqui"
-}
-```
-
-#### POST `/api/auth/logout`
-Realiza logout do usuário
-
-**Headers:**
-```
-Authorization: Bearer <jwt_token>
-```
-
-**Response (200):**
-```json
-{
-  "message": "Logout realizado com sucesso"
-}
-```
-
-#### GET `/api/auth/me`
-Retorna informações do usuário autenticado
-
-**Headers:**
-```
-Authorization: Bearer <jwt_token>
-```
-
-**Response (200):**
-```json
-{
-  "id": 1,
-  "email": "usuario@email.com",
-  "name": "Nome do Usuário"
-}
-```
-
-## 📸 API de Fotos
-
-### Endpoints de Fotos
-
-#### GET `/api/photos`
-Retorna todas as seções de fotos
-
-**Response (200):**
-```json
-[
-  {
-    "id": 1,
-    "title": "Primeira vez que nos encontramos",
-    "description": "Primeira vez que nos encontramos - Foto",
-    "photos": [
-      {
-        "id": 1,
-        "title": "Nosso primeiro encontro",
-        "description": "Uma foto especial",
-        "url": "/uploads/photo-123.jpg",
-        "createdAt": "2024-01-15T10:30:00Z"
-      }
-    ]
-  }
-]
-```
-
-#### POST `/api/photos/sections`
-Cria uma nova seção de fotos (requer autenticação)
-
-**Headers:**
-```
-Authorization: Bearer <jwt_token>
-```
-
-**Body:**
-```json
-{
-  "title": "Nova Seção",
-  "description": "Descrição da seção"
-}
-```
-
-#### PUT `/api/photos/sections/:id`
-Atualiza uma seção de fotos (requer autenticação)
-
-**Headers:**
-```
-Authorization: Bearer <jwt_token>
-```
-
-**Body:**
-```json
-{
-  "title": "Título Atualizado",
-  "description": "Nova descrição"
-}
-```
-
-#### DELETE `/api/photos/sections/:id`
-Exclui uma seção de fotos (requer autenticação)
-
-**Headers:**
-```
-Authorization: Bearer <jwt_token>
-```
-
-#### POST `/api/photos/sections/:sectionId/photos`
-Adiciona uma foto à seção (requer autenticação)
-
-**Headers:**
-```
-Authorization: Bearer <jwt_token>
-Content-Type: multipart/form-data
-```
-
-**Body (FormData):**
-- `file`: Arquivo da imagem
-- `title`: Título da foto
-- `description`: Descrição da foto
-
-#### PUT `/api/photos/:id`
-Atualiza informações de uma foto (requer autenticação)
-
-**Headers:**
-```
-Authorization: Bearer <jwt_token>
-```
-
-**Body:**
-```json
-{
-  "title": "Novo título",
-  "description": "Nova descrição"
-}
-```
-
-#### DELETE `/api/photos/:id`
-Exclui uma foto (requer autenticação)
-
-**Headers:**
-```
-Authorization: Bearer <jwt_token>
-```
-
-## 📖 API de História
-
-### Endpoints de História
-
-#### GET `/api/story`
-Retorna o conteúdo da história
-
-**Response (200):**
-```json
-{
-  "id": 1,
-  "content": "<p>Nossa história começou...</p>",
-  "updatedAt": "2024-01-15T10:30:00Z"
-}
-```
-
-#### PUT `/api/story`
-Atualiza o conteúdo da história (requer autenticação)
-
-**Headers:**
-```
-Authorization: Bearer <jwt_token>
-```
-
-**Body:**
-```json
-{
-  "content": "<p>Conteúdo HTML da história...</p>"
-}
-```
-
-## 🎨 Frontend - Páginas e Funcionalidades
-
-### Páginas Principais
-
-1. **Home (`/`)** - Página inicial com apresentação
-2. **Fotos (`/fotos`)** - Galeria de fotos organizadas por seções
-3. **História (`/historia`)** - Página com a história do casal
-4. **Login (`/login`)** - Página de autenticação
-
-### Funcionalidades por Página
-
-#### Página de Fotos
-- **Visualização pública**: Galeria responsiva com lightbox
-- **Modo autenticado**:
-  - Adicionar novas seções
-  - Upload de fotos com drag & drop
-  - Editar títulos e descrições
-  - Excluir fotos e seções
-  - Reorganizar conteúdo
-
-#### Página de História
-- **Visualização pública**: Leitura da história formatada
-- **Modo autenticado**:
-  - Editor de texto rico (ReactQuill)
-  - Formatação: negrito, itálico, listas, links
-  - Salvamento automático
-  - Preview em tempo real
-
-#### Sistema de Navegação
-- Menu responsivo com hamburger no mobile
-- Botão de logout quando autenticado
-- Indicação visual da página ativa
-- Transições suaves entre páginas
-
-### Componentes Principais
-
-- **Navigation**: Barra de navegação responsiva
-- **Layout**: Layout base com navegação
-- **AuthContext**: Gerenciamento de estado de autenticação
-- **PhotoUpload**: Componente de upload de fotos
-- **RichTextEditor**: Editor de texto com formatação
-
-## 🗄️ Banco de Dados
-
-### Modelos de Dados
-
-#### User
-```prisma
-model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-```
-
-#### PhotoSection
-```prisma
-model PhotoSection {
-  id          Int     @id @default(autoincrement())
-  title       String
-  description String?
-  photos      Photo[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-```
-
-#### Photo
-```prisma
-model Photo {
-  id          Int          @id @default(autoincrement())
-  title       String
-  description String?
-  url         String
-  section     PhotoSection @relation(fields: [sectionId], references: [id])
-  sectionId   Int
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-}
-```
-
-#### Story
-```prisma
-model Story {
-  id        Int      @id @default(autoincrement())
-  content   String   @db.Text
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-```
-
-## 🔧 Configuração de Ambiente
-
-### Backend (.env)
-```env
-# Banco de dados
-DATABASE_URL="mysql://user:password@localhost:3306/sideludi"
-
-# Redis
-REDIS_URL="redis://localhost:6379"
-
-# JWT
-JWT_SECRET="seu_jwt_secret_muito_seguro"
-JWT_EXPIRES_IN="7d"
-
-# Servidor
-PORT=3001
-NODE_ENV="development"
-
-# Upload
-UPLOAD_DIR="./uploads"
-MAX_FILE_SIZE=5242880  # 5MB
-```
-
-### Frontend (.env)
-```env
-# API Base URL
-VITE_API_BASE_URL="http://localhost:3001"
-
-# Outras configurações
-VITE_APP_NAME="Nossa História"
-```
-
-## 🚀 Deploy
-
-### Usando Docker Compose (Produção)
-
-1. Configure as variáveis de ambiente para produção
-2. Execute:
+### Para mudanças no Frontend:
 ```bash
-docker-compose -f docker-compose.prod.yml up -d
+# Rebuild apenas o frontend
+docker compose build frontend
+docker compose up -d frontend
 ```
 
-### Deploy Manual
-
-#### Backend
+### Para mudanças no Backend:
 ```bash
-cd backend
-npm run build
-npm start
+# Rebuild apenas o backend
+docker compose build backend
+docker compose up -d backend
 ```
 
-#### Frontend
+### Para rebuildar tudo:
 ```bash
+# Rebuild todos os serviços
+docker compose build
+docker compose up -d
+```
+
+### Desenvolvimento Ágil (Alternativa):
+Para desenvolvimento mais rápido com hot-reload, você pode rodar localmente:
+
+```bash
+# Frontend (em um terminal)
 cd frontend
-npm run build
-# Sirva os arquivos da pasta dist com nginx ou outro servidor
-```
+npm install
+npm run dev  # Disponível em http://localhost:5173
 
-## 🧪 Testes
-
-```bash
-# Backend
+# Backend (em outro terminal)
 cd backend
-npm test
-
-# Frontend
-cd frontend
-npm test
+npm install
+npm run dev  # Disponível em http://localhost:3001
 ```
 
-## 📝 Scripts Disponíveis
+**Nota:** Certifique-se de que MySQL e Redis estejam rodando via Docker mesmo no desenvolvimento local.
 
-### Backend
-- `npm run dev` - Inicia servidor de desenvolvimento
-- `npm run build` - Compila TypeScript
-- `npm start` - Inicia servidor de produção
-- `npm test` - Executa testes
-- `npm run prisma:migrate` - Executa migrações
-- `npm run prisma:seed` - Executa seed do banco
+## 🔐 Página de Login para Edição
 
-### Frontend
-- `npm run dev` - Inicia servidor de desenvolvimento
-- `npm run build` - Build de produção
-- `npm run preview` - Preview do build
-- `npm test` - Executa testes
-- `npm run lint` - Executa linter
+A aplicação possui uma página de login (`/login`) que permite autenticação para editar conteúdos. Após o login bem-sucedido, os usuários podem:
+- Adicionar e editar fotos nas seções
+- Criar e modificar histórias
+- Gerenciar o conteúdo da aplicação
 
-## 🆘 Suporte
+O sistema utiliza JWT para autenticação e sessões Redis para gerenciamento de estado.
 
-Se você encontrar algum problema ou tiver dúvidas:
+## 📱 Estrutura de Páginas
 
-1. Verifique se todos os serviços estão rodando
-2. Confira os logs: `docker-compose logs`
-3. Verifique as variáveis de ambiente
-4. Consulte a documentação da API
+A aplicação é organizada nas seguintes páginas principais:
+
+- **Home** (`/`) - Página inicial com apresentação do casal
+- **Photos** (`/photos`) - Galeria de fotos organizadas por seções temáticas
+- **Story** (`/story`) - Página com a história do casal em formato de texto rico
+- **Login** (`/login`) - Página de autenticação para edição de conteúdo
+- **NotFound** (`/404`) - Página de erro para rotas não encontradas
+
+Cada página é desenvolvida como um componente React independente, utilizando React Router para navegação e React Query para gerenciamento de estado e cache de dados da API.
 
 **Desenvolvido com ❤️ para Ludimila**

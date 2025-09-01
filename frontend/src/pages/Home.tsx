@@ -13,7 +13,7 @@ const Home = () => {
                         <Heart className="h-8 w-8 text-primary animate-pulse" />
                     </div>
                     <h1 className="text-4xl md:text-6xl font-bold bg-gradient-romantic bg-clip-text text-transparent mb-4">
-                        Sidenir & Ludimila
+                        Seu nome & Nome do seu amor
                     </h1>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                         Cada segundo, cada minuto, cada dia que passamos juntos é especial. 
