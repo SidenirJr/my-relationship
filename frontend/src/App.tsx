@@ -26,17 +26,6 @@ const App = () => (
                         <Route path="/fotos" element={<Layout><Photos /></Layout>} />
                         <Route path="/historia" element={<Layout><Story /></Layout>} />
                         <Route path="/login" element={<Login />} />
-                        <Route path="/admin/fotos" element={
-                            <ProtectedRoute>
-                                <Layout><Photos isAdmin={true} /></Layout>
-                            </ProtectedRoute>
-                        } />
-                        <Route path="/admin/historia" element={
-                            <ProtectedRoute>
-                                <Layout><Story isAdmin={true} /></Layout>
-                            </ProtectedRoute>
-                        } />
-                        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </AuthProvider>

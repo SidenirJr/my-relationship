@@ -38,9 +38,6 @@ const Login = () => {
                     <h1 className="text-3xl font-bold bg-gradient-romantic bg-clip-text text-transparent mb-2">
                         Acesso Secreto
                     </h1>
-                    {/* <p className="text-muted-foreground">
-                        Faça login para editar nossa página de amor
-                    </p> */}
                 </div>
 
                 {/* Login Form */}
